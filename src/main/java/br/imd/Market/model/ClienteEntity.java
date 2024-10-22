@@ -34,7 +34,7 @@ public class ClienteEntity {
     @Column(name = "Data de Nascimento")
     String dataNascimento;
 
-
+    private boolean ativo = true;
 
 
 }

@@ -33,12 +33,24 @@ public class ProdutoService {
         Optional<ProdutoEntity> produtoOptional = produtoRepository.findByIdAndAtivoTrue(id);
         if (produtoOptional.isPresent()) {
             ProdutoEntity produto = produtoOptional.get();
-            produto.setNomeProduto(produtoAtt.getNomeProduto());
-            produto.setMarca(produtoAtt.getMarca());
-            produto.setDataFabricacao(produtoAtt.getDataFabricacao());
-            produto.setDataValidade(produtoAtt.getDataValidade());
-            produto.setGenero(ProdutoEntity.GeneroEnum.valueOf(produtoAtt.getGenero()));
-            produto.setLote(produtoAtt.getLote());
+            if(produtoAtt.getNomeProduto() != null){
+                produto.setNomeProduto(produtoAtt.getNomeProduto());
+            }
+            if (produtoAtt.getMarca() != null){
+                produto.setMarca(produtoAtt.getMarca());
+            }
+            if (produtoAtt.getDataFabricacao() != null){
+                produto.setDataFabricacao(produtoAtt.getDataFabricacao());
+            }
+            if (produtoAtt.getDataValidade() != null){
+                produto.setDataValidade(produtoAtt.getDataValidade());
+            }
+            if (produtoAtt.getGenero() != null){
+                produto.setGenero(ProdutoEntity.GeneroEnum.valueOf(produtoAtt.getGenero()));
+            }
+            if (produtoAtt.getLote() != null){
+                produto.setLote(produtoAtt.getLote());
+            }
             return produtoRepository.save(produto);
         } else {
             throw new RuntimeException("Produto nao existe no banco de dados da loja");
