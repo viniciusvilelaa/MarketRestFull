@@ -43,6 +43,6 @@ public class ProdutoEntity {
     @Column(name = "Lote")
     String lote;
 
-
+    private boolean ativo = true;
 
 }

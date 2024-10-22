@@ -4,8 +4,8 @@ import br.imd.Market.DTO.ProdutoDTO;
 import br.imd.Market.model.ProdutoEntity;
 import br.imd.Market.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +30,7 @@ public class ProdutoService {
 
     //Metodo para alterar caracteristicas de um elemento pelo id
     public ProdutoEntity putProduto(Long id, ProdutoDTO produtoAtt) {
-        Optional<ProdutoEntity> produtoOptional = produtoRepository.findById(id);
+        Optional<ProdutoEntity> produtoOptional = produtoRepository.findByIdAndAtivoTrue(id);
         if (produtoOptional.isPresent()) {
             ProdutoEntity produto = produtoOptional.get();
             produto.setNomeProduto(produtoAtt.getNomeProduto());
@@ -45,15 +45,15 @@ public class ProdutoService {
         }
     }
 
-    //Metodo para retornar todos os produtos do banco de dados
+    //Metodo para retornar todos os produtos ativos do banco de dados
     public List<ProdutoEntity> getAll() {
-        List<ProdutoEntity> produtos = produtoRepository.findAll();
+        List<ProdutoEntity> produtos = produtoRepository.findAllByAtivoTrue();
         return produtos;
     }
 
-    //Metodo para retornar produto pelo id
+    //Metodo para retornar produto ativo pelo id
     public ProdutoEntity getById(Long id) {
-        Optional<ProdutoEntity> produto = produtoRepository.findById(id);
+        Optional<ProdutoEntity> produto = produtoRepository.findByIdAndAtivoTrue(id);
         return produto.orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 
@@ -65,6 +65,14 @@ public class ProdutoService {
         return produtoAtt;
     }
 
-
+    //Metodo DeleteLogic
+    @Transactional
+    public ProdutoEntity DeleteLogic(Long id){
+        Optional<ProdutoEntity> produto = produtoRepository.findByIdAndAtivoTrue(id);
+        ProdutoEntity produtoDelete = produto.get();
+        produtoDelete.setAtivo(false);
+        produtoRepository.save(produtoDelete);
+        return produtoDelete;
+    }
 
 }

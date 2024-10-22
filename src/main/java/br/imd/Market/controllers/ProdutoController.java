@@ -46,9 +46,17 @@ public class ProdutoController {
         return produtoService.putProduto(id, produtoAtt);
     }
 
+    //Metodo para deletar elemento pelo id
     @DeleteMapping("DeleteProduto/{id}")
     public ResponseEntity<ProdutoEntity> deleteProduto(@PathVariable Long id){
         ProdutoEntity produto = produtoService.deleteById(id);
         return ResponseEntity.ok(produto);
+    }
+
+    //Metodo para deletar elemento logicamento(altera campo ativo para false)
+    @DeleteMapping("DeleteLogic/{id}")
+    public ResponseEntity<String> deleteLogic(@PathVariable Long id){
+        produtoService.DeleteLogic(id);
+        return ResponseEntity.ok("Produto excluido com sucesso");
     }
 }
