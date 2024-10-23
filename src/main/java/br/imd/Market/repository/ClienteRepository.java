@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteEntity,Long> {
 
-    List<ClienteEntity> findByAllAtivoTrue();
+    List<ClienteEntity> findAllByAtivoTrue();
 
     Optional<ClienteEntity> findByIdAndAtivoTrue(Long id);
 }

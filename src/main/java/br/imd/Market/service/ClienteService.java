@@ -23,6 +23,7 @@ public class ClienteService {
         cliente.setNome(clienteDTO.getNome());
         cliente.setCpf(clienteDTO.getCpf());
         cliente.setGenero(ClienteEntity.Genero.valueOf(clienteDTO.getGenero()));
+        cliente.setDataNascimento(clienteDTO.getDataNascimento());
         clienteRepository.save(cliente);
         return clienteRepository.save(cliente);
     }
@@ -47,9 +48,9 @@ public class ClienteService {
         }
     }
 
-    //Metodo para retornar todos os cliesntes ativos no banco de dados
+    //Metodo para retornar todos os clientes ativos no banco de dados
     public List<ClienteEntity> getAll() {
-        List<ClienteEntity> clientes = clienteRepository.findByAllAtivoTrue();
+        List<ClienteEntity> clientes = clienteRepository.findAllByAtivoTrue();
         return clientes;
     }
 
