@@ -3,6 +3,7 @@ package br.imd.Market.controllers;
 import br.imd.Market.DTO.ClienteDTO;
 import br.imd.Market.model.ClienteEntity;
 import br.imd.Market.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class ClienteController {
 
     //Metodo postCliente
     @PostMapping("postCliente")
-    public ResponseEntity<ClienteEntity> postCliente(@RequestBody ClienteDTO clienteDTO){
+    public ResponseEntity<ClienteEntity> postCliente(@RequestBody @Valid ClienteDTO clienteDTO){
         ClienteEntity cliente = clienteService.postCliente(clienteDTO);
         return ResponseEntity.ok(cliente);
     }

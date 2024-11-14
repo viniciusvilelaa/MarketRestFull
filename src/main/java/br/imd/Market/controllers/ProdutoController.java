@@ -4,6 +4,7 @@ package br.imd.Market.controllers;
 import br.imd.Market.DTO.ProdutoDTO;
 import br.imd.Market.model.ProdutoEntity;
 import br.imd.Market.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ProdutoController {
 
     //Metodo para salvar produto
     @PostMapping("postProduto")
-    public ResponseEntity<ProdutoEntity> postProduto(@RequestBody ProdutoDTO produtoDTO) {
+    public ResponseEntity<ProdutoEntity> postProduto(@RequestBody  @Valid ProdutoDTO produtoDTO) {
         ProdutoEntity produto = produtoService.postProduto(produtoDTO);
         return ResponseEntity.ok(produto);
 
