@@ -76,4 +76,11 @@ public class PedidoService {
         pedidoRepository.delete(pedidoDelet);
         return pedidoDelet;
     }
+
+    //Metodo deleteLogic para deletar logicamente um pedido
+    public PedidoEntity deleteLogic(Long Id){
+        PedidoEntity pedido = pedidoRepository.findByIdAndAtivoTrue(Id).orElseThrow(()-> new RuntimeException("Pedido não encontrado com o id informado"));
+        pedidoRepository.delete(pedido);
+        return pedido;
+    }
 }

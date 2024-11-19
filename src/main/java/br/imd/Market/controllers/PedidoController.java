@@ -51,5 +51,10 @@ public class PedidoController {
         return ResponseEntity.ok(pedido);
     }
 
-
+    //Metodo para deletar logicamente um pedido
+    @DeleteMapping("DeleteLogic/{id}")
+    public ResponseEntity<PedidoEntity> deleteLogic(@PathVariable Long id){
+        PedidoEntity pedido = pedidoService.deleteLogic(id);
+        return ResponseEntity.ok(pedido);
+    }
 }
