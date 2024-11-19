@@ -30,12 +30,12 @@ public class PedidoEntity {
     // Chave estrangeira para Pedido
     // Chave estrangeira para Produto
     @NotNull
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<ProdutoEntity> produtos;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 

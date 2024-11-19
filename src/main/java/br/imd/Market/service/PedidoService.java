@@ -69,4 +69,11 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
+    //Metodo delete para deletar fisicamente um pedido
+    public PedidoEntity delete (Long id){
+        Optional<PedidoEntity> pedido = pedidoRepository.findByIdAndAtivoTrue(id);
+        PedidoEntity pedidoDelet = pedido.get();
+        pedidoRepository.delete(pedidoDelet);
+        return pedidoDelet;
+    }
 }

@@ -51,7 +51,7 @@ public class ProdutoEntity {
 
     private boolean ativo = true;
 
-    /*@ManyToMany(mappedBy = "produtos")
+    /*@ManyToMany(mappedBy = "produtos", fetch = FetchType.EAGER)
     private List<PedidoEntity> pedidos;
     */
 }

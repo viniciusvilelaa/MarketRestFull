@@ -44,5 +44,12 @@ public class PedidoController {
     }
 
 
+    //Metodo para deletar fisicamente um pedido
+    @DeleteMapping("DeletePedido/{id}")
+    public ResponseEntity<PedidoEntity> delete (@PathVariable Long id){
+        PedidoEntity pedido = pedidoService.delete(id);
+        return ResponseEntity.ok(pedido);
+    }
+
 
 }

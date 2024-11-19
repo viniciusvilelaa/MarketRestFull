@@ -45,7 +45,7 @@ public class ClienteEntity {
 
     private boolean ativo = true;
 
-    /*@OneToMany(mappedBy = "cliente")
-    private List<PedidoEntity> pedidos;
-    */
+    /*@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<PedidoEntity> pedidos;*/
+
 }
