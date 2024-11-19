@@ -4,6 +4,7 @@ import br.imd.Market.DTO.PedidoDTO;
 import br.imd.Market.model.PedidoEntity;
 import br.imd.Market.service.PedidoService;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,13 @@ public class PedidoController {
     @DeleteMapping("DeleteLogic/{id}")
     public ResponseEntity<PedidoEntity> deleteLogic(@PathVariable Long id){
         PedidoEntity pedido = pedidoService.deleteLogic(id);
+        return ResponseEntity.ok(pedido);
+    }
+
+    //Metodo para adicionar um produto no pedido
+    @PostMapping("AdicionarProduto/{Id}/{Id2}")
+    public ResponseEntity<PedidoEntity> AdicionarProduto(@PathVariable Long Id, @PathVariable Long Id2){
+        PedidoEntity pedido = pedidoService.addProduto(Id,Id2);
         return ResponseEntity.ok(pedido);
     }
 }

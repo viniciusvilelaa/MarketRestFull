@@ -83,4 +83,13 @@ public class PedidoService {
         pedidoRepository.delete(pedido);
         return pedido;
     }
+    //Metodo para adicionar um novo produto no pedido
+    public PedidoEntity addProduto(Long Id, Long Id2){
+        PedidoEntity pedido = pedidoRepository.findByIdAndAtivoTrue(Id).orElseThrow(() -> new RuntimeException("Id pedido invalido"));
+        ProdutoEntity produto = produtoRepository.findByIdAndAtivoTrue(Id2).orElseThrow(()-> new RuntimeException("Id produto invalido"));
+        pedido.getProdutos().add(produto);
+        pedidoRepository.save(pedido);
+        return pedido;
+    }
+
 }
