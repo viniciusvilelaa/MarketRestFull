@@ -13,7 +13,7 @@ import java.util.List;
 public class PedidoDTO {
     String codigo;
 
-    @NotNull
+
     List<Long> produtosId;
 
     Long clienteId;

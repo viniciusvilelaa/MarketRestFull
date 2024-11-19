@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -24,10 +25,12 @@ public class PedidoEntity {
 
 
 
-    @ManyToMany
+
     // Nome da tabela de junção
     // Chave estrangeira para Pedido
     // Chave estrangeira para Produto
+    @NotNull
+    @ManyToMany
     @JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<ProdutoEntity> produtos;
 

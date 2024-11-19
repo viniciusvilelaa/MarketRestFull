@@ -1,5 +1,6 @@
 package br.imd.Market.service;
 
+import br.imd.Market.DTO.ClienteDTO;
 import br.imd.Market.DTO.PedidoDTO;
 import br.imd.Market.model.ClienteEntity;
 import br.imd.Market.model.PedidoEntity;
@@ -10,7 +11,9 @@ import br.imd.Market.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -25,7 +28,7 @@ public class PedidoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    //Post Pedido
+    //Metodo post para criação do pedido
     public PedidoEntity postPedido(PedidoDTO pedidoDTO){
         PedidoEntity pedido = new PedidoEntity();
         pedido.setCodigo(pedidoDTO.getCodigo());
@@ -36,16 +39,34 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
-    //GET ALL
+    //Metodo getAll para retornar todos os pedidos ativos
     public List<PedidoEntity> getAll(){
         List<PedidoEntity> pedidos = pedidoRepository.findAllByAtivoTrue();
         return pedidos;
     }
 
-    //GET BY ID
+    //Metodo getById para retornar apenas um pedido ativo
     public PedidoEntity getById(long id){
         PedidoEntity pedido = pedidoRepository.findByIdAndAtivoTrue(id).orElseThrow(() -> new RuntimeException("Id informado é invalido"));
         return pedido;
+    }
+
+    //Metodo put para atualizar algum campo do pedido
+    public PedidoEntity putPedido(long id, PedidoDTO pedidoAtt){
+        PedidoEntity pedido = pedidoRepository.findByIdAndAtivoTrue(id).orElseThrow(()-> new RuntimeException("Pedido com id informado não foi encontrado"));
+        if (pedidoAtt.getCodigo() != null){
+            pedido.setCodigo(pedidoAtt.getCodigo());
+        }
+        if (pedidoAtt.getProdutosId() != null && !pedidoAtt.getProdutosId().isEmpty()){
+            List<ProdutoEntity> produtos = produtoRepository.findAllById(pedidoAtt.getProdutosId());
+            pedido.setProdutos(produtos);
+        }
+        if (pedidoAtt.getClienteId() != null){
+            ClienteEntity cliente = clienteRepository.findByIdAndAtivoTrue(pedidoAtt.getClienteId()).orElseThrow(()-> new RuntimeException("Cliente com id informado não foi encontrado"));
+            pedido.setCliente(cliente);
+        }
+
+        return pedidoRepository.save(pedido);
     }
 
 }

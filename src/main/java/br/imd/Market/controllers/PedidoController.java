@@ -23,6 +23,12 @@ public class PedidoController {
         return ResponseEntity.ok(pedido);
     }
 
+    //Metodo para alterar algum dado de um pedido especifico
+    @PutMapping("putPedido/{id}")
+    public PedidoEntity putPedido (@PathVariable long id, @RequestBody PedidoDTO pedidoDTO){
+        return pedidoService.putPedido(id, pedidoDTO);
+    }
+
     //Metodo para retornar todos os pedidos ativos
     @GetMapping("getAll")
     public ResponseEntity<List<PedidoEntity>> getAll(){
@@ -37,6 +43,6 @@ public class PedidoController {
         return ResponseEntity.ok(pedido);
     }
 
-    
+
 
 }
