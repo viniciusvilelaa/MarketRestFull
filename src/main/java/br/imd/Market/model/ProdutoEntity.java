@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -49,4 +51,7 @@ public class ProdutoEntity {
 
     private boolean ativo = true;
 
+    /*@ManyToMany(mappedBy = "produtos")
+    private List<PedidoEntity> pedidos;
+    */
 }

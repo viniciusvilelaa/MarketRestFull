@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<ClienteEntity,Long> {
+public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 
     List<ClienteEntity> findAllByAtivoTrue();
 

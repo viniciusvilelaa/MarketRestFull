@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -43,5 +45,7 @@ public class ClienteEntity {
 
     private boolean ativo = true;
 
-
+    /*@OneToMany(mappedBy = "cliente")
+    private List<PedidoEntity> pedidos;
+    */
 }
