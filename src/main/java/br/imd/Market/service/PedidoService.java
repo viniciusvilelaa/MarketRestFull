@@ -92,4 +92,13 @@ public class PedidoService {
         return pedido;
     }
 
+    //Metodo para remover um produto de algum serviço
+    public PedidoEntity removerProduto(Long Id, Long Id2){
+        PedidoEntity pedido = pedidoRepository.findByIdAndAtivoTrue(Id).orElseThrow(()-> new RuntimeException("Id pedido invalido"));
+        ProdutoEntity produto = produtoRepository.findByIdAndAtivoTrue(Id2).orElseThrow(()-> new RuntimeException("Id produto invalido"));
+        pedido.getProdutos().remove(produto);
+        pedidoRepository.save(pedido);
+        return pedido;
+    }
+
 }

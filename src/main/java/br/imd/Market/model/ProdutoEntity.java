@@ -2,6 +2,8 @@ package br.imd.Market.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,6 +39,7 @@ public class ProdutoEntity {
 
     @Column(name = "Genero")
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Genero do produto nao informado")
     GeneroEnum genero;
 
     public enum GeneroEnum {

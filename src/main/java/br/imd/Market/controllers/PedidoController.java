@@ -65,4 +65,11 @@ public class PedidoController {
         PedidoEntity pedido = pedidoService.addProduto(Id,Id2);
         return ResponseEntity.ok(pedido);
     }
+
+    //Metodo para remover um produto de algum pedido
+    @DeleteMapping("RemoverProduto/{Id}/{Id2}")
+    public ResponseEntity<PedidoEntity> RemoverProduto(@PathVariable Long Id, @PathVariable Long Id2){
+        PedidoEntity pedido = pedidoService.removerProduto(Id,Id2);
+        return ResponseEntity.ok(pedido);
+    }
 }

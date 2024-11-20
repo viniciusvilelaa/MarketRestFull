@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProdutoDTO {
+
     String nomeProduto;
     String marca;
     String dataFabricacao;

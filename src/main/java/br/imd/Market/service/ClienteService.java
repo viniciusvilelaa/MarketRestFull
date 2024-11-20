@@ -42,6 +42,9 @@ public class ClienteService {
             if (clienteAtt.getGenero() != null){
                 clienteEntity.setGenero(ClienteEntity.Genero.valueOf(clienteAtt.getGenero()));
             }
+            if (clienteAtt.getDataNascimento() != null){
+                clienteEntity.setDataNascimento(clienteAtt.getDataNascimento());
+            }
             return clienteRepository.save(clienteEntity);
         } else {
             throw new RuntimeException("Cliente nao encontrado para realizar as alteracoes");

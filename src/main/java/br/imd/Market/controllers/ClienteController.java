@@ -19,7 +19,7 @@ public class ClienteController {
 
     //Metodo postCliente
     @PostMapping("postCliente")
-    public ResponseEntity<ClienteEntity> postCliente(@RequestBody @Valid ClienteDTO clienteDTO){
+    public ResponseEntity<ClienteEntity> postCliente(@Valid @RequestBody ClienteDTO clienteDTO){
         ClienteEntity cliente = clienteService.postCliente(clienteDTO);
         return ResponseEntity.ok(cliente);
     }
@@ -40,7 +40,7 @@ public class ClienteController {
 
     //Metodo putCliente
     @PutMapping("putCliente/{id}")
-    public ClienteEntity putCliente(@PathVariable long id, @RequestBody ClienteDTO clienteAtt){
+    public ClienteEntity putCliente(@PathVariable long id, @RequestBody  ClienteDTO clienteAtt){
         return clienteService.putCliente(id, clienteAtt);
     }
 
