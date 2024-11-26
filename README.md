@@ -1,6 +1,6 @@
 # ImdMarketRestFull
 
-O projeto em construção sistema Imd Market consiste em um sistema de cadastro de Clientes e de Protudos. Simulando uma aplicação para uma loja.
+O projeto em construção sistema CRUD do Imd Market consiste em um sistema de venda contendo elementos como produtos, clientes e pedidos. Simulando uma aplicação para uma loja.
 
 ## Tecnologias
 
