@@ -1,7 +1,9 @@
 package br.imd.Market.controllers;
 
 import br.imd.Market.DTO.AuthenticationDTO;
+import br.imd.Market.DTO.LoginResponseDTO;
 import br.imd.Market.DTO.RegisterDTO;
+import br.imd.Market.infra.Security.TokenService;
 import br.imd.Market.model.UsersEntity;
 import br.imd.Market.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -30,7 +35,9 @@ public class AuthenticationController {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((UsersEntity) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
@@ -39,5 +46,7 @@ public class AuthenticationController {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         UsersEntity newUser = new UsersEntity(data.login(), encryptedPassword, data.role());
+        this.userRepository.save(newUser);
+        return ResponseEntity.ok().build();
     }
 }
