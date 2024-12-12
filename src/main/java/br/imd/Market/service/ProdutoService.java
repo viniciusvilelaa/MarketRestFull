@@ -75,10 +75,17 @@ public class ProdutoService {
     @Transactional
     public ProdutoEntity DeleteLogic(Long id){
         Optional<ProdutoEntity> produto = produtoRepository.findByIdAndAtivoTrue(id);
-        ProdutoEntity produtoDelete = produto.get();
-        produtoDelete.setAtivo(false);
-        produtoRepository.save(produtoDelete);
-        return produtoDelete;
+        if(produto.isPresent()){
+            ProdutoEntity produtoDelete = produto.get();
+            produtoDelete.setAtivo(false);
+            produtoRepository.save(produtoDelete);
+            return produtoDelete;
+        }else{
+
+            return null;
+        }
+
+
     }
 
 }
