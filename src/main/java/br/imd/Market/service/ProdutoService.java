@@ -18,13 +18,7 @@ public class ProdutoService {
 
     //Metodo para converter o DTO e salvar o produto
     public ProdutoEntity postProduto(ProdutoDTO produtoDTO) {
-        ProdutoEntity produto = new ProdutoEntity();
-        produto.setNomeProduto(produtoDTO.getNomeProduto());
-        produto.setMarca(produtoDTO.getMarca());
-        produto.setDataFabricacao(produtoDTO.getDataFabricacao());
-        produto.setDataValidade(produtoDTO.getDataValidade());
-        produto.setGenero(ProdutoEntity.GeneroEnum.valueOf(produtoDTO.getGenero()));
-        produto.setLote(produtoDTO.getLote());
+        ProdutoEntity produto = new ProdutoEntity(produtoDTO);
         return produtoRepository.save(produto);
     }
 

@@ -1,5 +1,6 @@
 package br.imd.Market.model;
 
+import br.imd.Market.DTO.ProdutoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -57,4 +58,14 @@ public class ProdutoEntity {
     /*@ManyToMany(mappedBy = "produtos", fetch = FetchType.EAGER)
     private List<PedidoEntity> pedidos;
     */
+
+    public ProdutoEntity(ProdutoDTO produtoDTO){
+        this.nomeProduto = produtoDTO.getNomeProduto();
+        this.marca = produtoDTO.getMarca();
+        this.dataFabricacao = produtoDTO.getDataFabricacao();
+        this.dataValidade = produtoDTO.getDataValidade();
+        this.genero = GeneroEnum.valueOf(produtoDTO.getGenero());
+        this.lote = produtoDTO.getLote();
+    }
+
 }
