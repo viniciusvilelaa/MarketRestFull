@@ -16,16 +16,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//Classe de configuração
+//Classe de configuração do Spring Security
 public class SecurityConfigurations {
     @Autowired
     SecurityFilter securityFilter;
 
 
+    //Configurando a cadeia de filtro para verificar as roles dos usuários
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-
-
 
 
         return httpSecurity
@@ -39,6 +38,7 @@ public class SecurityConfigurations {
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
 
+
     }
 
     @Bean
@@ -46,6 +46,7 @@ public class SecurityConfigurations {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    //Metodo para codificar a senha em HASH
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

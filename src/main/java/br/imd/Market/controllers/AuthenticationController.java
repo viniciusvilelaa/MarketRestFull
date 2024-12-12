@@ -30,8 +30,10 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    //Mapping para login do usuário
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+        //Fazendo a validação do login e senha do usuário
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
@@ -40,8 +42,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
+    //Mapping para registro de novos usuários(apenas ADMIN tem permissão para cadastro)
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+    public ResponseEntity<UsersEntity> register(@RequestBody @Valid RegisterDTO data){
         if (userRepository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
