@@ -19,11 +19,7 @@ public class ClienteService {
 
     //Metodo para converter o DTO e salvar o cliente no banco de dados
     public ClienteEntity postCliente(ClienteDTO clienteDTO) {
-        ClienteEntity cliente = new ClienteEntity();
-        cliente.setNome(clienteDTO.getNome());
-        cliente.setCpf(clienteDTO.getCpf());
-        cliente.setGenero(ClienteEntity.Genero.valueOf(clienteDTO.getGenero()));
-        cliente.setDataNascimento(clienteDTO.getDataNascimento());
+        ClienteEntity cliente = new ClienteEntity(clienteDTO);
         clienteRepository.save(cliente);
         return clienteRepository.save(cliente);
     }

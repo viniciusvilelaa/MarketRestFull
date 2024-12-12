@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/home/viniciusvilela/Documents/WEB2/MarketRestFull/src/main/resources/application.properties
 
 ### STS ###
 .apt_generated

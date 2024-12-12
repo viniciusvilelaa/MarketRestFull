@@ -1,6 +1,7 @@
 package br.imd.Market.model;
 
 
+import br.imd.Market.DTO.ClienteDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -50,5 +51,12 @@ public class ClienteEntity {
 
     /*@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<PedidoEntity> pedidos;*/
+    
+    public ClienteEntity(ClienteDTO clienteDTO){
+        this.nome = clienteDTO.getNome();
+        this.cpf = clienteDTO.getCpf();
+        this.genero = Genero.valueOf(clienteDTO.getGenero());
+        this.dataNascimento = clienteDTO.getDataNascimento();
+    }
 
 }
