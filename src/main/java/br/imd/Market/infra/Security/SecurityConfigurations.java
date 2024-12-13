@@ -33,7 +33,11 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.POST, "/pedidos/postPedido").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/pedidos/DeleteLogic/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "pedidos/putPedido/").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/pedidos/getById/").hasRole("USER")
+                        .anyRequest().hasRole("ADMIN")
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
