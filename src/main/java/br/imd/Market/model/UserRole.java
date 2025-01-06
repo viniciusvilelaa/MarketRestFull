@@ -2,6 +2,8 @@ package br.imd.Market.model;
 
 import lombok.Getter;
 
+
+//Enum das regras
 @Getter
 public enum UserRole {
     ADMIN("admin"),

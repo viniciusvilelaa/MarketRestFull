@@ -32,6 +32,7 @@ public class UsersEntity implements UserDetails {
     @Column(name = "Password")
     String password;
 
+    //Papel do usuário
     @NotNull(message = "O usuário deve ter uma role")
     @Column(name = "Role")
     UserRole role;
