@@ -1,9 +1,9 @@
-# ImdMarketRestFull
+# API MarketRestFull
 
-O projeto em construção sistema CRUD do Imd Market consiste em uma API para sistema de venda contendo elementos como produtos, clientes e pedidos. Simulando uma aplicação para uma loja.
+API desenvolvida como projeto do curso de graduação, consiste em uma API para um E-Commerce permitindo o gerenciamento de produtos, clientes, pedidos e usuários. O sistema contém autênticaço de usuários, realizada a partir de token JWT utilizando o Spring Security.
 
-## Tecnologias
+## Tecnologias utilizadas
 
-O projeto está sendo desenvolvido utilizando o SpringBoot junto com o MySQL.
+**Spring Boot, Spring Boot Security, MySQL e JWT Security,
 
-Futuramente será implementado o Front-End desenvolvido em React
+Futuramente será implementado o Front-End desenvolvido em React.
