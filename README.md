@@ -4,6 +4,6 @@ API desenvolvida como projeto do curso de graduação, consiste em uma API para 
 
 ## Tecnologias utilizadas
 
-**Spring Boot, Spring Boot Security, MySQL e JWT Security,
+**Spring Boot, Spring Boot Security, MySQL e JWT Security.**
 
 Futuramente será implementado o Front-End desenvolvido em React.
